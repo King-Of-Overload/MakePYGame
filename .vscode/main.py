@@ -1127,3 +1127,231 @@
 #     print('成功删除非空文件夹!')
 # else:
 #     print('文件夹不存在!')
+
+
+#异常处理
+#常见异常  除零错误(ZeroDivisionError) 变量名错误(NameError) 操作数类型错误(TypeError)
+# 下标越界错误(IndexError) 打开文件错误(FileNotFoundError) 语法错误(SyntaxError)
+
+# try...except...语句
+# a = [1,2,3,4,5]
+# try:
+#     print(a[5])
+# except IndexError:
+#     print('索引下标越界')
+
+#try...except...else
+# while True:
+#     try:
+#         x = int(input('请输入数据1:'))
+#         y = int(input('请输入数据2:'))
+#         z = x/y
+#     except ValueError:
+#         print('应全部输入数值数据!')
+#     else:
+#         print('最终结果为:',z)
+#         break
+
+#多种异常
+# while True:
+#     try:
+#         x = eval(input('请输入数据1:'))
+#         y = eval(input('请输入数据2:'))
+#         z = x/y
+#     except ValueError:
+#         print('应全部输入数字!')
+#     except ZeroDivisionError:
+#         print('除数不能为0')
+#     except NameError:
+#         print('变量不存在')
+#     else:
+#         print('最终结果为:',z)
+#         break
+#     finally:
+#         print('END')
+
+
+#断言与上下文管理语句
+
+#断言
+# try:
+#     x = int(input('请输入数据1:'))
+#     y = int(input('请输入数据2:'))
+#     s = '两次输入数据不相等'
+#     assert x == y, s #s作为except的实例传入
+# except AssertionError:
+#     print(s)
+
+
+#上下文管理语句 执行前期或收尾工作
+# e.g.文件读写模块使用上下文操作无需进行关闭操作
+# with open('hello.txt','w') as f:
+#     f.write('Hello')
+#     f.write('Python')
+
+
+#python 高级编程
+
+#GUI编程  tkinter
+
+#first gui examp
+# import tkinter
+# top = tkinter.Tk()#顶层窗口
+# label1 = tkinter.Label(top, text = '幼儿缘')
+# label1.pack()#放置
+# top.mainloop()#进入事件循环
+
+
+#pack布局
+# import tkinter
+# top = tkinter.Tk()
+# top.geometry('320x120+0+0')
+# label1 = tkinter.Label(top, text = '扬州')
+# label2 = tkinter.Label(top, text = '杭州')
+# label3 = tkinter.Label(top, text = '苏州')
+# label4 = tkinter.Label(top, text = '长安')
+# label1.pack(side = 'left', fill = 'both')
+# label2.pack(side = 'right', fill = 'both', padx = 5, pady = 3)
+# label3.pack(side = 'top', fill = 'x', expand = 'yes', anchor = 'n')
+# label4.pack(side = 'bottom', expand = 'yes', anchor = 's')
+# top.mainloop()
+
+#文字标签
+# import tkinter
+# root = tkinter.Tk()
+# root.geometry('300x100+0+0')
+# root.wm_title('标签组件实例')
+# label1 = tkinter.Label(root, text = '幼儿缘', height = 4 ,width = 20, relief = 'ridge', background = '#fff',\
+#                        anchor = 'center', font = '黑体', cursor = 'man')
+# label1.grid(row = 0, column = 1, padx = 60)
+# root.mainloop()
+
+
+#图像标签
+# import tkinter
+# root = tkinter.Tk()
+# root.geometry('1600x1066+0+0')
+# root.wm_title('图像标签示例')
+# x = tkinter.PhotoImage(file = '35440589.jpg')
+# label1 = tkinter.Label(root, image = x, height = 1066, width = 1600, relief = 'ridge')
+# label1.pack()
+# root.mainloop()
+
+#TCP编程  socket(family, type)
+# import socket
+# s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# s.connect('www.baidu.com', 80)# 建立连接  地址与端口号
+# s.send("内容")
+# buf = []
+# while True:
+#     d = s.recv(1024) #接收数据以及每次接收的数据量
+#     if d:
+#         buf.append(d)
+#     else:
+#         break
+# data = 
+
+
+#TCP服务器编程实例
+# import socket
+# import sys
+# HOST = '127.0.0.1'
+# PORT = 5000
+# s = socket.socket(socket.AF_INET,  socket.SOCK_STREAM)
+# print('Socket绑定端口成功')
+# s.listen(5) #连接的最大数量
+# print('Socket开始监听')
+# while True:
+#     conn,addr = s.accept()#接收新连接
+#     print('Connected with'+addr[[0]+':'+str(addr[1]))
+#     #创建新的线程处理TCP连接:
+#     t = threading.Thead(tcplink, args=(sock,addr))
+#     t.start()
+
+
+# def tcplink(sock, addr):
+#     print('请输入新的连接%s:%s...' %addr)
+#     sock.send(b'welcome!')
+#     while True:
+#         data = sock.recv(1024)
+#         time.sleep(1)
+#         if not data or data.decode('utf-8') == 'exit':
+#             break
+# sock
+
+
+#UDP编程
+#服务端
+# import socket
+# s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+# s.bind(('127.0.0.1', 10021))
+# print('UDP连接')
+# while True:
+#     data,addr = s.recvfrom(1024)
+#     print('收到数据 %s:%s.' %addr)
+#     s.sendto(data.decode('utf-8').upper().encode(),addr) #将数据送回客户端
+
+# #客户端
+# import socket
+# s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) #UDP
+# addr = ('127.0.0.1', 10021)
+# while True:
+#     data = input('请输入要处理的数据:')
+#     if not data or data == 'quit':
+#         break
+#     s.sendto(data.encode(),addr)
+#     recvdata,addr = s.recvfrom(1024)
+#     print(recvdata.decode('utf-8'))
+# s.close()
+
+#python网络爬虫
+#使用requests库
+# import requests
+# URL = 'http://ip.taobao.com/service/getIpInfo.php'
+# try:
+#     r = requests.get(URL, params={'ip':'8.8.8.8'}, timeout = 1)
+#     r.raise_for_status() #入国响应状态码不是200，主动抛出异常
+# except requests.RequestException as e:
+#     print(e)
+# else:
+#     result = r.json()
+# print(type(result), result, sep = '\n')
+
+
+#html解析库beautifulsoup4
+#抓取淘宝网首页分类
+# import requests
+# from bs4 import BeautifulSoup
+# r = requests.get('http://www.taobao.com')
+# r.encoding = 'utf-8'
+# soup = BeautifulSoup(r.text, "html.parser")
+# for list in soup.find_all('a'):
+#     if not list.string == None:
+#         print(list.string)
+
+
+#抓取糗事百科的热门段子
+# import requests
+# from bs4 import BeautifulSoup
+# content = requests.get("http://www.qiushibaike.com").content
+# soup = BeautifulSoup(content, 'html.parser')
+# for div in soup.find_all('div',{'class':'content'}):
+#     print(div.text.strip())
+
+
+#sqlite数据库操作
+import sqlite3
+conn = sqlite3.connect('school.db')#连接数据库school.db
+cursor = conn.cursor() #打开游标
+print('数据库已打开!')
+#创建表
+cursor.execute('''create table student(ID int primary key not null,
+                 Name text not null,Age int not null,Score real,Address char(50)) ''')
+print('创建表成功!')
+#插入记录
+cursor.execute("insert into student values(1001,'小缘',20,589,'辽宁沈阳')")
+cursor.execute("insert into student values(1002,'幼儿缘',19,568,'江苏扬州')")
+conn.commit()
+for row in cursor.execute('select * from student'):
+    print(row)
+conn.close()
